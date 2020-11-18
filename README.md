@@ -1,2 +1,1 @@
-# ROS_notes
-Notes on Regression and Other Stories
+Bookdown template -- based off Hadley Wickam's "Mastering Shiny" book.
