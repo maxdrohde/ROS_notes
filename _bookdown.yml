@@ -1,4 +1,4 @@
-book_filename: "book-template"
+book_filename: "ROS_notes"
 language:
   ui:
     chapter_name: "Chapter "
@@ -10,5 +10,3 @@ rmd_files:
     "index.Rmd",
     "introduction.Rmd",
   ]
-
-

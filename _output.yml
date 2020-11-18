@@ -1,8 +1,5 @@
 bookdown::bs4_book:
   theme:
     primary: "#04396b"
-  repo: https://github.com/maxdrohde/
+  repo: https://github.com/maxdrohde/ROS_notes
   css: style.css
-
-
-
