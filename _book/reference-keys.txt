@@ -1,6 +1,2 @@
-welcome-page
 preface
-what-is-shiny
-who-should-read-this-book
-what-will-you-learn
-what-wont-you-learn
+overview
