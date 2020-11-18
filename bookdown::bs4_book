@@ -1,0 +1,13 @@
+  |                                                                              |                                                                      |   0%  |                                                                              |......................................................................| 100%
+   inline R code fragments
+
+
+  |                                                                              |                                                                      |   0%  |                                                                              |....                                                                  |   6%
+  ordinary text without R code
+
+  |                                                                              |.........                                                             |  12%
+label: unnamed-chunk-1 (with options) 
+List of 1
+ $ include: logi FALSE
+
+
