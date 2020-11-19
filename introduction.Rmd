@@ -69,7 +69,7 @@ df %>%
     caption = "Data ranges from 1952 to 2012"
   )
 ```
-```{r, warning=FALSE, message=FALSE, error=FALSE}
+```{r, warning=FALSE, message=FALSE, error=FALSE, cache=TRUE}
 p <- ggplot(iris, aes(x = Petal.Width, y = Petal.Length)) +
   geom_point() +
   transition_states(Species,

@@ -1,0 +1,18 @@
+# Data and Measurement
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  out.width = '100%'
+)
+```
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+library(tidyverse)
+library(extrafont)
+library(rstanarm)
+
+library(modelr)
+library(tidybayes)
+library(gganimate)
+```
+

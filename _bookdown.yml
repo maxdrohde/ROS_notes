@@ -9,4 +9,7 @@ rmd_files:
   [
     "index.Rmd",
     "introduction.Rmd",
+    "data_and_measurement.Rmd",
+    "basic_math.Rmd",
+    "stat_inference.Rmd",
   ]

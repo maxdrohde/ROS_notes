@@ -1,2 +1,5 @@
 preface
 overview
+data-and-measurement
+basic-probability-and-statistics
+statistical-inference

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Chapter 1 Preface | Notes on Regression and Other Stories</title>
+<title>Chapter 3 Data and Measurement | Notes on Regression and Other Stories</title>
 <meta name="author" content="Maximilian Rohde">
 <!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.2"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/header-attrs-2.5.3/header-attrs.js"></script><script src="libs/jquery-3.5.1/jquery-3.5.1.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="libs/bootstrap-4.5.3/bootstrap.min.css" rel="stylesheet">
@@ -31,9 +31,9 @@
 
       <nav aria-label="Table of contents"><h2>Table of contents</h2>
         <ul class="book-toc list-unstyled">
-<li><a class="active" href="index.html"><span class="header-section-number">1</span> Preface</a></li>
+<li><a class="" href="index.html"><span class="header-section-number">1</span> Preface</a></li>
 <li><a class="" href="overview.html"><span class="header-section-number">2</span> Overview</a></li>
-<li><a class="" href="data-and-measurement.html"><span class="header-section-number">3</span> Data and Measurement</a></li>
+<li><a class="active" href="data-and-measurement.html"><span class="header-section-number">3</span> Data and Measurement</a></li>
 <li><a class="" href="basic-probability-and-statistics.html"><span class="header-section-number">4</span> Basic Probability and Statistics</a></li>
 <li><a class="" href="statistical-inference.html"><span class="header-section-number">5</span> Statistical Inference</a></li>
 </ul>
@@ -43,25 +43,31 @@
         </div>
       </nav>
 </div>
-  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><!--bookdown:title:end--><!--bookdown:title:start--><div id="preface" class="section level1" number="1">
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="data-and-measurement" class="section level1" number="3">
 <h1>
-<span class="header-section-number">1</span> Preface<a class="anchor" aria-label="anchor" href="#preface"><i class="fas fa-link"></i></a>
+<span class="header-section-number">3</span> Data and Measurement<a class="anchor" aria-label="anchor" href="#data-and-measurement"><i class="fas fa-link"></i></a>
 </h1>
-<p>I created these notes when working through <em>Regression and Other Stories</em>, by Andrew Gelman, Jennifer Hill, and Aki Vehtari. Each chapter summarizes the main points, and provide additional explanations for topics I found difficult. Although the authors wrote most of their code in base R style, I have written my code examples using Tidyverse packages.</p>
-<p>I would be delighted if other people find these notes useful. Corrections and suggestions via pull request are welcome!</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://tidyverse.tidyverse.org">tidyverse</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/wch/extrafont">extrafont</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mc-stan.org/rstanarm/">rstanarm</a></span><span class="op">)</span>
+
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://modelr.tidyverse.org">modelr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://mjskay.github.io/tidybayes/">tidybayes</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://gganimate.com">gganimate</a></span><span class="op">)</span></code></pre></div>
 
 </div>
   <div class="chapter-nav">
-<div class="empty"></div>
-<div class="next"><a href="overview.html"><span class="header-section-number">2</span> Overview</a></div>
+<div class="prev"><a href="overview.html"><span class="header-section-number">2</span> Overview</a></div>
+<div class="next"><a href="basic-probability-and-statistics.html"><span class="header-section-number">4</span> Basic Probability and Statistics</a></div>
 </div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
     <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
-      <ul class="nav navbar-nav"><li><a class="nav-link" href="#preface"><span class="header-section-number">1</span> Preface</a></li></ul>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#data-and-measurement"><span class="header-section-number">3</span> Data and Measurement</a></li></ul>
 
       <div class="book-extra">
         <ul class="list-unstyled">
-<li><a id="book-source" href="https://github.com/maxdrohde/ROS_notes/blob/master/index.Rmd">View source <i class="fab fa-github"></i></a></li>
-          <li><a id="book-edit" href="https://github.com/maxdrohde/ROS_notes/edit/master/index.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+<li><a id="book-source" href="https://github.com/maxdrohde/ROS_notes/blob/master/data_and_measurement.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/maxdrohde/ROS_notes/edit/master/data_and_measurement.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
         </ul>
 </div>
     </nav>
