@@ -1,11 +1,22 @@
 # Overview
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  out.width = '100%'
+)
+```
+
 ```{r, warning=FALSE, message=FALSE, error=FALSE}
 library(tidyverse)
 library(extrafont)
+library(rstanarm)
+
+library(modelr)
+library(tidybayes)
+library(gganimate)
 ```
 
-
+Here is an example of a regression. Positive economic growth before an election is a strong predictor of incumbent vote percentage.
 ```{r, warning=FALSE, message=FALSE, error=FALSE}
 # Figure 1.1
 
@@ -17,11 +28,11 @@ df$vote <- df$vote / 100
 
 df %>%
   ggplot(aes(x = growth, y = vote, label = year)) +
-  geom_point(alpha = 0.5) +
-  geom_text(nudge_y = -0.01, size=3.5) +
+  geom_point(shape=21, stroke=0.5, fill="steelblue", size=2) +
+  geom_text(nudge_y = -0.015, size=3.5) +
   stat_smooth(geom='line', alpha=0.5, se=TRUE, method='lm', color="steelblue") +
   stat_smooth(geom='ribbon', method='lm', alpha=0.2, fill="gray") +
-  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0.35, 0.65)) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0.30, 0.70)) +
   scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
   cowplot::theme_cowplot() +
   theme(text=element_text(size=12, family="Source Sans Pro"))+
@@ -31,5 +42,40 @@ df %>%
     y = "Incumbent vote percentage",
     caption = "Data ranges from 1952 to 2012"
   )
+```
+
+Now we fit a Bayesian model and show 200 lines drawn from the posterior distribution to visualize the uncertainty.
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+fit <- stan_glm(vote ~ growth, data=df, refresh = 0)
+
+fit
+```
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+df %>%
+  data_grid(growth = seq_range(growth, n = 150)) %>%
+  add_fitted_draws(fit, n = 200) %>%
+  ggplot(aes(x = growth, y = vote)) +
+  geom_line(aes(y = .value, group = .draw), alpha = .1) +
+  geom_point(data = df, shape=21, stroke=0.5, fill="steelblue", size=2) +
+  scale_y_continuous(labels = scales::percent_format(accuracy = 1), limits = c(0.30, 0.70)) +
+  scale_x_continuous(labels = scales::percent_format(accuracy = 1)) +
+  cowplot::theme_cowplot() +
+  theme(text = element_text(size = 12, family = "Source Sans Pro")) +
+  labs(
+    title = "Economic growth predicts incumbent vote percentage",
+    x = "Average recent growth in personal income",
+    y = "Incumbent vote percentage",
+    caption = "Data ranges from 1952 to 2012"
+  )
+```
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+p <- ggplot(iris, aes(x = Petal.Width, y = Petal.Length)) +
+  geom_point() +
+  transition_states(Species,
+                    transition_length = 2,
+                    state_length = 1)
+
+animate(p, renderer = ffmpeg_renderer(), fps=60, height=1000, width=1000, res=300, nframes=300)
 ```
 
