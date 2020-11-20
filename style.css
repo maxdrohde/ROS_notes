@@ -17,6 +17,8 @@
 .sourceCode {
   font-size: 14px;
   font-family: 'Fira Code';
+  background-image: none;
+  background-color: #e9f2fe;
 }
 
 h1 {

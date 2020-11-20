@@ -8,11 +8,5 @@ knitr::opts_chunk$set(
 
 ```{r, warning=FALSE, message=FALSE, error=FALSE}
 library(tidyverse)
-library(extrafont)
-library(rstanarm)
-
-library(modelr)
-library(tidybayes)
-library(gganimate)
 ```
 
