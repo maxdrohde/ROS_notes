@@ -5,6 +5,8 @@
 
 ```r
 library(tidyverse)
+library(extrafont)
+
 library(MASS)
 ```
 
@@ -30,16 +32,25 @@ m <- mvrnorm(n = 1000, mu = c(mean1, mean2), Sigma = matrix(c(sd1^2, cov, cov, s
 # Set column names and convert to tibble
 colnames(m) <- c("x1", "x2")
 df <- as_tibble(m)
+```
 
+```r
 df %>%
   ggplot(aes(x=x1, y=x2)) +
   geom_point(alpha=0.4, fill="#005394", shape=21) +
   scale_x_continuous(limits=c(-5,12)) +
   scale_y_continuous(limits=c(0,10)) +
-  cowplot::theme_minimal_grid()
+  cowplot::theme_minimal_grid() +
+  labs(x = "X_1",
+       y = "X_2") +
+  theme(text = element_text(size = 12, family = "Source Sans Pro"))
 ```
 
-<img src="basic_math_files/figure-html/unnamed-chunk-3-1.png" width="100%" />
+<div class="figure">
+<img src="basic_math_files/figure-html/unnamed-chunk-4-1.png" alt="1,000 samples from a bivariate normal distribution with mean vector (3,5), standard deviation vector (2,1), and rho = 0.7." width="100%" />
+<p class="caption">(\#fig:unnamed-chunk-4)1,000 samples from a bivariate normal distribution with mean vector (3,5), standard deviation vector (2,1), and rho = 0.7.</p>
+</div>
+
 
 
 ```r
