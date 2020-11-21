@@ -1,4 +1,5 @@
 fig:unnamed-chunk-4
+fig:unnamed-chunk-7
 preface
 overview
 data-and-measurement
@@ -9,4 +10,5 @@ overview-1
 simulating-from-the-model
 fitting-a-model-using-the-lm-function
 bias-variance-and-mean-squared-error-of-estimates
-basic-probability-and-statistics-1
+what-is-a-statistic
+simulating-statistics-of-dice-rolls
