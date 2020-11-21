@@ -61,7 +61,7 @@ fit
 ## ------
 ##             Median MAD_SD
 ## (Intercept) 0.5    0.0   
-## growth      3.0    0.7   
+## growth      3.1    0.7   
 ## 
 ## Auxiliary parameter(s):
 ##       Median MAD_SD

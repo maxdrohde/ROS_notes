@@ -7,3 +7,5 @@ statistical-inference
 bias-and-variance
 overview-1
 simulating-from-the-model
+fitting-a-model-using-the-lm-function
+bias-variance-and-mean-squared-error-of-estimates
