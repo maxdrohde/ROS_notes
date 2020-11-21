@@ -9,3 +9,4 @@ overview-1
 simulating-from-the-model
 fitting-a-model-using-the-lm-function
 bias-variance-and-mean-squared-error-of-estimates
+basic-probability-and-statistics-1

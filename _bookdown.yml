@@ -13,4 +13,5 @@ rmd_files:
     "basic_math.Rmd",
     "stat_inference.Rmd",
     "bias_and_variance.Rmd",
+    "what_is_a_statistic.Rmd",
   ]
