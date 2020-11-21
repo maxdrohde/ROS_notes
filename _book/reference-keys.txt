@@ -4,3 +4,6 @@ overview
 data-and-measurement
 basic-probability-and-statistics
 statistical-inference
+bias-and-variance
+overview-1
+simulating-from-the-model

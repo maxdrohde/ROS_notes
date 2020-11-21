@@ -1,0 +1,87 @@
+# Bias and Variance
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  out.width = '100%'
+)
+```
+
+```{r, warning=FALSE, message=FALSE, error=FALSE}
+library(tidyverse)
+library(gganimate)
+library(extrafont)
+```
+
+## Overview
+In this chapter we will examine the frequentist properties of the classical linear regression procedure. Specifically, we will examine the bias, variance, and mean squared error of the parameters estimated by the procedure.
+
+Recall the assumptions of classical linear regression. We assume a true linear relationship $y = ax + b + \epsilon$ between the outcome variable, $y$, and the predictor variable, $x$. The slope of this linear relationship is $m$, and the y-intercept is $b$. The error term, $\epsilon$, is assumed to be normally distributed with mean, $\mu$, equal to zero, and a standard deviation of $\sigma$. The value of $\sigma$ determines the amount of variability of the data point around the true linear relationship.
+
+When we fit the classical linear regression model, we are estimating the three unknown parameters:
+
+* the slope of the true linear relationship, $a$
+* the y-intercept of the true linear relationship, $b$
+* the standard deviation of the error term, $\sigma$
+
+Remember that regression models are generative models. We can generate random samples of data from them. How do we generate data from this model? Let's assume for concreteness that we are predicting height ($y$) from weight ($x$). If someone has weight $x_1$, how do we predict their height, given that we know the true model parameters? The height will be normally distributed with a mean of $ax_1 + b$ and a standard deviation of $\sigma$, where we assume that we know the values of $a$, $b$, and $\sigma$. It is crucial to realize that even if we know the true model, we cannot make predictions with certainty! We are always limited by the irreducible error present in the error term, $\epsilon$.
+
+What if now instead of knowing the model's true parameters, we estimate them from data. As we collect an infinite amount of data our uncertainty about $a$, $b$, and $\sigma$ will go to zero. But we will never be able to make exact predictions about new data points because we are still bounded by the error $\epsilon$. When we fit the classical regression model with data, we obtain uncertain parameter estimates from a model that, by its construction, makes uncertain predictions.
+
+It is crucial to understand these two separate sources of uncertainty -- uncertainty about the model parameters and uncertainty about making new predictions due to the error term. When we make a prediction from our model, we must make both of these sources of uncertainty into account.
+
+## Simulating from the model
+
+Let's start by turning some of these ideas into R code. We will start by assuming a known model and show how to generate random datasets from it. Here's an example model.
+$$
+\begin{align*}
+y &= 5x + 3 + \epsilon \\
+\epsilon &\sim \operatorname{Normal}(0, 6)
+\end{align*}
+$$
+In words, we have that the true relationship between $x$ and $y$ is described by the line $y = 5x+3$. Given a data point $x_1$ we can generate the corresponding value of $y_1$ by adding random noise sampled from $\operatorname{Normal}(0, 6)$ to the deterministic prediction of $5x_1 + 3$. This is equivalent to sampling from the directly from the distribution $\operatorname{Normal}(5x_1 + 3, 6)$. 
+
+Now let's actually carry out this procedure. First let's generate a bunch of sample $x$ values. We can use the range 1 to 10 in steps of 0.25 for simplicity.
+```{r}
+x <- seq(1, 10, by=0.25)
+```
+
+Our model can generate the $y$ value corresponding to each $x$ value. Remember that this is a random process! We will not get the same results every time. First, here is the model without the random component. As expected, we obtain a perfect line.
+```{r}
+y <- (5*x) + 3
+
+qplot(x,y)
+```
+Now let's add in the random component. To every $y$ value, we add a random value sampled from $\operatorname{Normal}(0, 0.5)$.
+```{r}
+y <- (5*x) + 3
+
+# Recall that `rnorm` is parameterized by the standard deviation, not the variance
+# so we need to take a square root
+y <- y + rnorm(n = length(y), mean=0, sd=sqrt(6))
+
+qplot(x,y)
+```
+
+Try running this code a few time, and see how you generate a new dataset each time. This is what we mean when we say that the classical linear regression model is a generative model. Here's an animation of sampling a few datasets.
+```{r, warning=FALSE, message=FALSE, error=FALSE, cache=TRUE}
+df <- crossing(x, dataset=1:5)
+
+df$dataset <- as.factor(df$dataset)
+
+df$y <- ((5*df$x) + 3) + rnorm(n = length(df$x), mean=0, sd=sqrt(6))
+
+df %>%
+  ggplot(aes(x=x, y=y, fill=dataset))+
+  geom_point(shape=21) +
+  geom_abline(intercept = 3, slope = 5, color="black", alpha=0.5)+
+  cowplot::theme_cowplot() +
+  scale_color_brewer(palette="Dark2") +
+  theme(text = element_text(size = 12, family = "Source Sans Pro")) +
+  labs(title = "Five generated datasets from our linear model") +
+  transition_states(dataset, transition_length = 0.5, state_length = 1) -> anim
+
+animate(anim, renderer = ffmpeg_renderer(), height=1500, width=2200, res=300)
+```
+
+
+
