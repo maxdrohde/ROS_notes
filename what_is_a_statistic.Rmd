@@ -50,7 +50,7 @@ df <- tibble(medians, means, minimums, maximums, second_order_stat, ranges)
 df <- pivot_longer(df, cols = everything())
 ```
 
-```{r, dpi=500, echo=FALSE, fig.cap="Various order statistics for rolls of 5 standard dice. Frequencies were calculated using 100,000 simulations."}
+```{r, dpi=500, fig.cap="Various order statistics for rolls of 5 standard dice. Probabilities were estimated using 100,000 simulations."}
 df$name <- recode(df$name,
   `medians` = "Median",
   `means` = "Mean",
