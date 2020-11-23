@@ -64,12 +64,13 @@ df$name <- fct_relevel(df$name, c("Minimum", "2nd Order Statistic", "Maximum", "
 
 df %>%
   ggplot(aes(x = value)) +
-  geom_bar(width = 0.2, fill = "gray", color = "black") +
+  geom_bar(aes(y = ..prop..), width = 0.2, fill = "gray", color = "black") +
   scale_x_continuous(breaks = 0:6) +
   facet_wrap(~name, scales = "free_x") +
   labs(x = "Value",
-       y = "Frequency",
-       title = "Distribution of various statistics for 100,000 rolls of 5 dice") +
+       y = "Estimated Probability",
+       title = "Distribution of various statistics for 100,000 rolls of 5 dice",
+       caption = "Monte Carlo estimate with 100,000 simulations") +
   ggthemes::theme_solarized() +
   theme(text = element_text(size = 12, family = "Source Sans Pro"))
 ```
